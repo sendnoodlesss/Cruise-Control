@@ -75,54 +75,69 @@ flowchart TD
     Backend <--> DB
 ```
 
-## 🗂️ Repository Structure
-cruise-control/
-├── backend/
-│ ├── main.py
-│ ├── database.py
-│ ├── llm_router.py
-│ ├── models/
-│ │ ├── pathway.py
-│ │ ├── run.py
-│ │ ├── contact.py
-│ │ └── email_draft.py
-│ ├── routers/
-│ │ ├── pathways.py
-│ │ ├── runs.py
-│ │ ├── emails.py
-│ │ └── settings.py
-│ ├── agents/
-│ │ ├── orchestrator.py
-│ │ ├── scraper.py
-│ │ ├── enricher.py
-│ │ ├── verifier.py
-│ │ ├── researcher.py
-│ │ ├── copywriter.py
-│ │ └── queuer.py
-│ └── requirements.txt
-├── frontend/
-│ ├── public/
-│ ├── src/
-│ │ ├── App.jsx
-│ │ ├── components/
-│ │ │ └── Shell.jsx
-│ │ └── pages/
-│ │ ├── Dashboard.jsx
-│ │ ├── Pathways.jsx
-│ │ ├── RunProgress.jsx
-│ │ ├── PathwayResults.jsx
-│ │ ├── EmailReview.jsx
-│ │ ├── ApiSettings.jsx
-│ │ └── Integrations.jsx
-│ ├── index.js
-│ ├── package.json
-│ └── tailwind.config.js
-├── docs/
-│ └── screenshots/
-├── .env.example
-├── .gitignore
-├── README.md
-└── LICENCE
+## 📁 Repository Structure
+
+```mermaid
+flowchart LR
+    ROOT[📦 cruise-control]
+
+    ROOT --> BE[⚙️ backend/]
+    ROOT --> FE[🖥️ frontend/]
+    ROOT --> DOCS[📄 docs/]
+    ROOT --> ROOT_FILES[🗂️ root files]
+
+    BE --> BE1[main.py]
+    BE --> BE2[database.py]
+    BE --> BE3[llm_router.py]
+    BE --> MODELS[models/]
+    BE --> ROUTERS[routers/]
+    BE --> AGENTS[agents/]
+    BE --> BE4[requirements.txt]
+
+    MODELS --> M1[pathway.py]
+    MODELS --> M2[run.py]
+    MODELS --> M3[contact.py]
+    MODELS --> M4[email_draft.py]
+
+    ROUTERS --> R1[pathways.py]
+    ROUTERS --> R2[runs.py]
+    ROUTERS --> R3[emails.py]
+    ROUTERS --> R4[settings.py]
+
+    AGENTS --> A1[orchestrator.py]
+    AGENTS --> A2[scraper.py]
+    AGENTS --> A3[enricher.py]
+    AGENTS --> A4[verifier.py]
+    AGENTS --> A5[researcher.py]
+    AGENTS --> A6[copywriter.py]
+    AGENTS --> A7[queuer.py]
+
+    FE --> FE1[public/]
+    FE --> SRC[src/]
+    FE --> FE2[package.json]
+    FE --> FE3[tailwind.config.js]
+
+    SRC --> SRC1[App.jsx]
+    SRC --> COMP[components/]
+    SRC --> PAGES[pages/]
+
+    COMP --> C1[Shell.jsx]
+
+    PAGES --> P1[Dashboard.jsx]
+    PAGES --> P2[Pathways.jsx]
+    PAGES --> P3[RunProgress.jsx]
+    PAGES --> P4[PathwayResults.jsx]
+    PAGES --> P5[EmailReview.jsx]
+    PAGES --> P6[ApiSettings.jsx]
+    PAGES --> P7[Integrations.jsx]
+
+    DOCS --> D1[screenshots/]
+
+    ROOT_FILES --> F1[.env.example]
+    ROOT_FILES --> F2[.gitignore]
+    ROOT_FILES --> F3[README.md]
+    ROOT_FILES --> F4[LICENCE]
+```
 
 ---
 
