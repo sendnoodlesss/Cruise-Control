@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #fafafa;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #0a0a0a;
+  --text-secondary: #52525b;
+  --text-tertiary: #a1a1aa;
+  --border-default: #e5e5e5;
+  --signal: #ff3b30;
+  --info-blue: #002fa7;
+  --success-bg: #dcfce7;
+  --success-text: #166534;
+  --success-border: #bbf7d0;
+  --warning-bg: #fef9c3;
+  --warning-text: #854d0e;
+  --warning-border: #fef08a;
+  --running-bg: #dbeafe;
+  --running-text: #1e40af;
+  --running-border: #bfdbfe;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.font-display {
+  font-family: "Cabinet Grotesk", "IBM Plex Sans", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-mono-display {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.brutal-border {
+  border: 1px solid var(--border-default);
+}
+
+.brutal-border-strong {
+  border: 2px solid var(--text-primary);
+}
+
+.label-caps {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.row-hover:hover {
+  background: #f7f7f7;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--border-default);
+  background: white;
+}
+
+.status-idle {
+  background: #f4f4f5;
+  color: #3f3f46;
+}
+
+.status-running {
+  background: var(--running-bg);
+  color: var(--running-text);
+  border-color: var(--running-border);
+}
+
+.status-completed {
+  background: var(--success-bg);
+  color: var(--success-text);
+  border-color: var(--success-border);
+}
+
+.status-error {
+  background: #fee2e2;
+  color: #991b1b;
+  border-color: #fecaca;
+}
+
+button, input, select, textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
