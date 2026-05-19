@@ -13,7 +13,7 @@
 
 ## 📋 Project Summary 
 
-Cruise Control is a full-stack outbound sales automation platform that transforms an Ideal Customer Profile (ICP) into verified, personalized email drafts — ready to send. Users define their target market, and a 6-agent AI pipeline handles the rest: scraping company data, enriching contacts, verifying emails, researching prospects, generating personalized copy, and surfacing drafts for human review. Built on FastAPI + React with MongoDB Atlas persistence, the system routes intelligently across LLM providers (OpenAI, Anthropic, Gemini) using a unified llm_router. Phase 1 ships with mocked data and manual review. Phase 2 wires live APIs and Gmail OAuth.
+Cruise Control is a personal, Agentic AI-powered internship-hunting web application. It lets you define up to five role-based "pathways" — for example, Business Analyst, Cloud, or AI/ML — each with its own resume and filters. Once a pathway is configured, a six-stage multi-agent pipeline runs automatically: it scrapes listed internships from job platforms, discovers unlisted startups that likely need interns but have no job postings, finds real contact emails of founders and decision-makers, parses your resume for skills and experience, drafts personalised cold outreach emails, and finally awaits your approval before sending. The goal is to fully automate the most tedious parts of internship hunting for a student with limited time and resources.
 
 ---
 
