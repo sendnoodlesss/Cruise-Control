@@ -1,4 +1,11 @@
 # 🚀 Cruise Control
+<img width="1055" height="661" alt="Screenshot (347)" src="https://github.com/user-attachments/assets/f32b72f0-cd69-489e-9194-9070d61a115f" /> 
+<img width="1710" height="752" alt="Screenshot 2026-05-13 013234" src="https://github.com/user-attachments/assets/62df563e-a233-411f-850c-4de69eff4818" /> 
+<img width="1733" height="794" alt="Screenshot 2026-05-13 013333" src="https://github.com/user-attachments/assets/5bbc2cb0-336f-4282-902f-d0286da80d18" />
+<img width="1606" height="889" alt="Screenshot 2026-05-19 223242" src="https://github.com/user-attachments/assets/f38f0ab7-6bb1-477e-bb0f-afb0463e4c55" />
+<img width="1859" height="904" alt="Screenshot 2026-05-16 165245" src="https://github.com/user-attachments/assets/89dacfcc-4d3b-49b9-8997-b8b5f7639faa" />
+
+
 
 > AI-powered outbound sales automation — from ICP definition to personalized email drafts, fully orchestrated.
 
