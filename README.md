@@ -29,90 +29,93 @@ Cruise Control is a full-stack outbound sales automation platform that transform
 ---
 
 ## 🏗️ Architecture
-┌─────────────────────────────────────────────────────────┐
-│ FRONTEND (React) │
-│ Dashboard → Pathways → Run Progress → Results → │
-│ Email Review → API Settings → Integrations │
-└───────────────────────┬─────────────────────────────────┘
-│ HTTP / REST (Axios)
-┌───────────────────────▼─────────────────────────────────┐
-│ BACKEND (FastAPI) │
-│ │
-│ /api/pathways /api/runs /api/emails │
-│ /api/agents /api/settings /health │
-│ │
-│ ┌──────────────────────────────────────────────┐ │
-│ │ AGENT ORCHESTRATOR │ │
-│ │ │ │
-│ │ Agent 1: ICP Scraper (Apify) │ │
-│ │ Agent 2: Contact Enricher (Apify/Apollo) │ │
-│ │ Agent 3: Email Verifier (Hunter.io) │ │
-│ │ Agent 4: Prospect Researcher (LLM) │ │
-│ │ Agent 5: Email Copywriter (LLM) │ │
-│ │ Agent 6: Review Queuer (MongoDB) │ │
-│ └──────────────┬───────────────────────────────┘ │
-│ │ │
-│ ┌──────────────▼───────────────────────────────┐ │
-│ │ LLM ROUTER │ │
-│ │ Routes by: task type, cost, speed, fallback │ │
-│ │ Providers: OpenAI | Anthropic | Gemini │ │
-│ └──────────────────────────────────────────────┘ │
-└───────────────────────┬─────────────────────────────────┘
-│ Motor (async)
-┌───────────────────────▼─────────────────────────────────┐
-│ MongoDB Atlas │
-│ Collections: pathways | runs | contacts | emails │
-└─────────────────────────────────────────────────────────┘
+
+```mermaid
+flowchart TD
+    subgraph Frontend["🖥️ Frontend (React)"]
+        UI[Dashboard / Pathways / Run Progress]
+        Pages[Email Review / API Settings / Integrations]
+    end
+
+    subgraph Backend["⚙️ Backend (FastAPI)"]
+        API[REST API via Axios]
+        Routes["/api/pathways · /api/runs · /api/emails · /api/agents · /api/settings"]
+    end
+
+    subgraph Orchestrator["🤖 Agent Orchestrator"]
+        A1[Agent 1 · ICP Scraper · Apify]
+        A2[Agent 2 · Contact Enricher · Apify/Apollo]
+        A3[Agent 3 · Email Verifier · Hunter.io]
+        A4[Agent 4 · Prospect Researcher · LLM]
+        A5[Agent 5 · Email Copywriter · LLM]
+        A6[Agent 6 · Review Queuer · MongoDB]
+    end
+
+    subgraph LLM["🧠 LLM Router"]
+        Router[Routes by: task type · cost · speed · fallback]
+        Providers[OpenAI · Anthropic · Gemini]
+    end
+
+    subgraph DB["🗄️ MongoDB Atlas"]
+        Collections[pathways · runs · contacts · emails]
+    end
+
+    Frontend <-->|HTTP / REST| Backend
+    Backend --> Orchestrator
+    Orchestrator --> LLM
+    LLM --> Providers
+    Orchestrator <--> DB
+    Backend <--> DB
+```
 
 ## 🗂️ Repository Structure
 cruise-control/
 ├── backend/
-│ ├── main.py # FastAPI app entry point
-│ ├── database.py # Motor MongoDB client
-│ ├── llm_router.py # Multi-provider LLM routing
+│ ├── main.py
+│ ├── database.py
+│ ├── llm_router.py
 │ ├── models/
-│ │ ├── pathway.py # Pathway Pydantic model
-│ │ ├── run.py # Run model
-│ │ ├── contact.py # Contact model
-│ │ └── email_draft.py # EmailDraft model
+│ │ ├── pathway.py
+│ │ ├── run.py
+│ │ ├── contact.py
+│ │ └── email_draft.py
 │ ├── routers/
-│ │ ├── pathways.py # CRUD for pathways
-│ │ ├── runs.py # Trigger + monitor runs
-│ │ ├── emails.py # Draft review endpoints
-│ │ └── settings.py # API key management
+│ │ ├── pathways.py
+│ │ ├── runs.py
+│ │ ├── emails.py
+│ │ └── settings.py
 │ ├── agents/
-│ │ ├── orchestrator.py # Run all 6 agents in sequence
-│ │ ├── scraper.py # Agent 1: Apify ICP scraper
-│ │ ├── enricher.py # Agent 2: Contact enrichment
-│ │ ├── verifier.py # Agent 3: Hunter.io email verify
-│ │ ├── researcher.py # Agent 4: LLM prospect research
-│ │ ├── copywriter.py # Agent 5: LLM email drafts
-│ │ └── queuer.py # Agent 6: Save to MongoDB
+│ │ ├── orchestrator.py
+│ │ ├── scraper.py
+│ │ ├── enricher.py
+│ │ ├── verifier.py
+│ │ ├── researcher.py
+│ │ ├── copywriter.py
+│ │ └── queuer.py
 │ └── requirements.txt
 ├── frontend/
 │ ├── public/
 │ ├── src/
-│ │ ├── App.js # React Router config
+│ │ ├── App.jsx
 │ │ ├── components/
-│ │ │ └── Shell.jsx # Nav sidebar + layout
-│ │ ├── pages/
-│ │ │ ├── Dashboard.jsx
-│ │ │ ├── Pathways.jsx
-│ │ │ ├── RunProgress.jsx
-│ │ │ ├── PathwayResults.jsx
-│ │ │ ├── EmailReview.jsx
-│ │ │ ├── ApiSettings.jsx
-│ │ │ └── Integrations.jsx
-│ │ └── index.js
+│ │ │ └── Shell.jsx
+│ │ └── pages/
+│ │ ├── Dashboard.jsx
+│ │ ├── Pathways.jsx
+│ │ ├── RunProgress.jsx
+│ │ ├── PathwayResults.jsx
+│ │ ├── EmailReview.jsx
+│ │ ├── ApiSettings.jsx
+│ │ └── Integrations.jsx
+│ ├── index.js
 │ ├── package.json
 │ └── tailwind.config.js
 ├── docs/
-│ └── architecture.png # Architecture diagram export
-├── .env.example # Safe env template (no secrets)
+│ └── screenshots/
+├── .env.example
 ├── .gitignore
 ├── README.md
 └── LICENCE
-
 
 ---
 
